@@ -1,0 +1,16 @@
+{
+  "name": "maykon-tours-landing",
+  "version": "1.0.0",
+  "description": "Maykon Tours landing page (static, Tailwind CSS, vanilla JS) — deployable as-is to GitHub Pages.",
+  "main": "index.html",
+  "scripts": {
+    "build": "tailwindcss -i css/input.css -o css/output.css --minify",
+    "watch": "tailwindcss -i css/input.css -o css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
