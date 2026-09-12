@@ -8,13 +8,13 @@
 <meta name="theme-color" content="#0b2540" />
 <meta name="robots" content="noindex" />
 
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="icon" type="image/png" href="assets/logo/favicon.png" />
+<link rel="apple-touch-icon" href="assets/logo/favicon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="output.css" />
+<link rel="stylesheet" href="css/output.css" />
 </head>
 <body class="bg-cream-50 font-sans text-navy-900 antialiased">
 
@@ -24,7 +24,7 @@
 <header class="bg-navy-900">
   <div class="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
     <a href="index.html" class="flex items-center gap-2.5">
-      <img src="logo.webp" alt="Maykon Tours" class="h-10 w-10 rounded-full object-cover" width="40" height="40" />
+      <img src="assets/logo/logo.webp" alt="Maykon Tours" class="h-10 w-10 rounded-full object-cover" width="40" height="40" />
       <span class="text-base font-bold text-cream-50">Maykon Tours</span>
     </a>
     <a href="index.html" class="inline-flex items-center gap-1.5 rounded-full bg-cream-50/10 px-4 py-2 text-xs font-bold text-cream-50 ring-1 ring-cream-50/15 transition-colors hover:bg-cream-50/20">
@@ -102,7 +102,7 @@
 ============================================================ -->
 <footer class="bg-navy-950 py-10">
   <div class="mx-auto flex max-w-lg flex-col items-center gap-4 px-6 text-center">
-    <img src="logo.webp" alt="Maykon Tours" class="h-12 w-12 rounded-full opacity-90" width="48" height="48" loading="lazy" />
+    <img src="assets/logo/logo.webp" alt="Maykon Tours" class="h-12 w-12 rounded-full opacity-90" width="48" height="48" loading="lazy" />
     <a href="index.html" class="text-sm font-semibold text-turquoise-300 underline underline-offset-4">חזרה לעמוד הבית</a>
     <div class="flex items-center gap-4 text-xs text-cream-50/50">
       <a href="privacy-policy.html" class="underline underline-offset-2 hover:text-cream-50/80">מדיניות פרטיות</a>
@@ -114,18 +114,41 @@
 </footer>
 
 <!-- ============================================================
-     ACCESSIBILITY WIDGET (UserWay)
-     Replace YOUR_USERWAY_ACCOUNT_ID with your real free account ID
-     from userway.org — see README.md for exact setup steps.
+     ACCESSIBILITY TOOLBAR (fully local — no external service, no signup)
 ============================================================ -->
-<script>
-  (function (d) {
-    var s = d.createElement("script");
-    s.setAttribute("data-account", "YOUR_USERWAY_ACCOUNT_ID");
-    s.setAttribute("src", "https://cdn.userway.org/widget.js");
-    (d.body || d.head).appendChild(s);
-  })(document);
-</script>
+<div id="a11y-widget" class="fixed bottom-5 right-5 z-50">
+  <button id="a11y-toggle" type="button" aria-label="אפשרויות נגישות" aria-expanded="false" aria-controls="a11y-panel"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-cream-50 shadow-glow ring-2 ring-turquoise-400/40 transition-transform active:scale-95 hover:scale-105">
+    <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor"><circle cx="12" cy="4" r="2"/><path d="M12 7c-1.1 0-2 .9-2 2v3.2l-3.6 1.4a1 1 0 00.7 1.9L10 14.2V16l-2.4 5.6a1 1 0 001.8.8L12 18l2.6 4.4a1 1 0 001.8-.8L14 16v-1.8l2.9 1.1a1 1 0 00.7-1.9L14 12.2V9c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+
+  <div id="a11y-panel" hidden class="absolute bottom-16 right-0 w-64 rounded-3xl bg-white p-4 text-navy-900 shadow-soft ring-1 ring-navy-900/10">
+    <p class="mb-3 text-sm font-bold text-navy-900">אפשרויות נגישות</p>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between gap-2 rounded-2xl bg-cream-50 px-3 py-2">
+        <span class="text-sm font-semibold">גודל טקסט</span>
+        <div class="flex items-center gap-1.5">
+          <button type="button" data-a11y-action="font-dec" aria-label="הקטן טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א-</button>
+          <button type="button" data-a11y-action="font-inc" aria-label="הגדל טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א+</button>
+        </div>
+      </div>
+      <button type="button" data-a11y-action="contrast" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>ניגודיות גבוהה</span>
+        <span data-a11y-indicator="contrast" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="underline" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>הדגשת קישורים</span>
+        <span data-a11y-indicator="underline" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="readable" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>גופן קריא</span>
+        <span data-a11y-indicator="readable" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="reset" class="mt-1 w-full rounded-2xl bg-navy-900/5 px-3 py-2.5 text-sm font-semibold text-navy-900/70 hover:bg-navy-900/10">איפוס הגדרות</button>
+    </div>
+  </div>
+</div>
+<script src="js/accessibility.js"></script>
 
 </body>
 </html>

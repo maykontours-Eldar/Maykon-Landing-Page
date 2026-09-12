@@ -9,10 +9,13 @@ index.html              all page content/sections
 css/output.css           compiled CSS (committed — this is what the page actually loads)
 css/input.css             Tailwind source (edit this, not output.css)
 js/main.js                all interactivity (hero slideshow, scroll tracker, carousel, form → WhatsApp)
+js/accessibility.js        local accessibility toolbar (text size / contrast / links / font) — no external service
 assets/logo/               logo + favicon
 assets/destinations/        hero background photos (thailand/zanzibar/japan/seychelles/budapest)
 assets/reviews/              customer review screenshots (carousel)
 tailwind.config.js          brand color palette + theme
+privacy-policy.html         standalone privacy policy page
+accessibility-statement.html standalone accessibility statement page
 ```
 
 ## Deploying to GitHub Pages
@@ -44,6 +47,10 @@ A few photos are hotlinked directly from Pexels (free license, no attribution re
 - **Services section — הופעות** (concerts) — photographer Fausto Ferreira: `https://images.pexels.com/photos/36675302/pexels-photo-36675302.jpeg`
 
 They all work as-is on GitHub Pages with no extra setup — no download or account needed. If you'd rather self-host any of them (so the page doesn't depend on Pexels staying up): download the photo, save it into `assets/destinations/mexico.jpg` (hero) or `assets/services/{cruise,car-rental,football,concert}.jpg` (services section — create that folder), then in `index.html` swap that image's `src`/`data-src` from the Pexels URL to the local path.
+
+## Accessibility toolbar
+
+The floating button at the bottom of every page (`js/accessibility.js`) is a fully local, self-built toolbar — no external script, no third-party account or signup, nothing to configure. It lets visitors increase/decrease text size, turn on higher contrast, force-underline links, and switch to a plainer font, and it remembers their choice (via `localStorage`) between visits. If you'd ever rather use a third-party service like UserWay instead, just add its `<script>` tag and remove the `#a11y-widget` block + `js/accessibility.js` include from each HTML file.
 
 ## Housekeeping — files no longer referenced
 

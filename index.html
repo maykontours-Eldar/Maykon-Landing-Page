@@ -442,18 +442,41 @@
 <script src="js/main.js"></script>
 
 <!-- ============================================================
-     ACCESSIBILITY WIDGET (UserWay)
-     Replace YOUR_USERWAY_ACCOUNT_ID with your real free account ID
-     from userway.org — see README.md for exact setup steps.
+     ACCESSIBILITY TOOLBAR (fully local — no external service, no signup)
 ============================================================ -->
-<script>
-  (function (d) {
-    var s = d.createElement("script");
-    s.setAttribute("data-account", "YOUR_USERWAY_ACCOUNT_ID");
-    s.setAttribute("src", "https://cdn.userway.org/widget.js");
-    (d.body || d.head).appendChild(s);
-  })(document);
-</script>
+<div id="a11y-widget" class="fixed bottom-5 right-5 z-50">
+  <button id="a11y-toggle" type="button" aria-label="אפשרויות נגישות" aria-expanded="false" aria-controls="a11y-panel"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-cream-50 shadow-glow ring-2 ring-turquoise-400/40 transition-transform active:scale-95 hover:scale-105">
+    <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor"><circle cx="12" cy="4" r="2"/><path d="M12 7c-1.1 0-2 .9-2 2v3.2l-3.6 1.4a1 1 0 00.7 1.9L10 14.2V16l-2.4 5.6a1 1 0 001.8.8L12 18l2.6 4.4a1 1 0 001.8-.8L14 16v-1.8l2.9 1.1a1 1 0 00.7-1.9L14 12.2V9c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+
+  <div id="a11y-panel" hidden class="absolute bottom-16 right-0 w-64 rounded-3xl bg-white p-4 text-navy-900 shadow-soft ring-1 ring-navy-900/10">
+    <p class="mb-3 text-sm font-bold text-navy-900">אפשרויות נגישות</p>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between gap-2 rounded-2xl bg-cream-50 px-3 py-2">
+        <span class="text-sm font-semibold">גודל טקסט</span>
+        <div class="flex items-center gap-1.5">
+          <button type="button" data-a11y-action="font-dec" aria-label="הקטן טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א-</button>
+          <button type="button" data-a11y-action="font-inc" aria-label="הגדל טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א+</button>
+        </div>
+      </div>
+      <button type="button" data-a11y-action="contrast" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>ניגודיות גבוהה</span>
+        <span data-a11y-indicator="contrast" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="underline" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>הדגשת קישורים</span>
+        <span data-a11y-indicator="underline" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="readable" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
+        <span>גופן קריא</span>
+        <span data-a11y-indicator="readable" class="text-xs text-navy-900/40">כבוי</span>
+      </button>
+      <button type="button" data-a11y-action="reset" class="mt-1 w-full rounded-2xl bg-navy-900/5 px-3 py-2.5 text-sm font-semibold text-navy-900/70 hover:bg-navy-900/10">איפוס הגדרות</button>
+    </div>
+  </div>
+</div>
+<script src="js/accessibility.js"></script>
 
 </body>
 </html>
