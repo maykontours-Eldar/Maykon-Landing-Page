@@ -74,6 +74,18 @@
     <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="מקסיקו">
       <img data-src="https://images.pexels.com/photos/27638882/pexels-photo-27638882.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="חוף טורקיז במקסיקו" class="h-full w-full object-cover" loading="lazy" decoding="async" />
     </div>
+    <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="תאילנד">
+      <img data-src="assets/destinations/thailand.webp" alt="חופים טרופיים בתאילנד" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+    </div>
+    <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="יפן">
+      <img data-src="assets/destinations/japan.webp" alt="נוף עירוני ביפן" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+    </div>
+    <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="איי סיישל">
+      <img data-src="assets/destinations/seychelles.webp" alt="חופים טרופיים באיי סיישל" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+    </div>
+    <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="זנזיבר">
+      <img data-src="assets/destinations/zanzibar.webp" alt="חופים באיי זנזיבר" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+    </div>
     <div class="hero-bg-slide absolute inset-0 opacity-0 transition-opacity duration-[1400ms] ease-in-out" data-caption="ועוד מגוון יעדים">
       <img data-src="assets/destinations/budapest.webp" alt="ועוד יעדים מרהיבים בעולם" class="h-full w-full object-cover" loading="lazy" decoding="async" />
     </div>
@@ -240,7 +252,119 @@
 </section>
 
 <!-- ============================================================
-     3. INSTAGRAM VALUE OFFER
+     3. LEAD FORM
+============================================================ -->
+<section id="lead-form" class="relative overflow-hidden bg-cream-50 py-20 scroll-mt-16">
+  <div class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-turquoise-100 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-coral-300/25 blur-3xl"></div>
+
+  <div class="reveal relative mx-auto max-w-lg px-6 text-center">
+    <p class="section-label">התחילו כאן</p>
+    <h2 class="mt-2 text-2xl font-extrabold text-navy-900 sm:text-3xl">פניה לסוכן</h2>
+    <p class="mt-2 text-sm text-navy-800/70">כמה פרטים קצרים, ואנחנו נחזור אליכם עם הצעה מדויקת</p>
+  </div>
+
+  <form id="agent-form" class="reveal relative mx-auto mt-8 max-w-lg rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-navy-900/5 sm:p-8">
+    <div class="space-y-5">
+
+      <!-- Travelers composition: airline-style popover with +/- counters -->
+      <div>
+        <label class="mb-1.5 block text-sm font-semibold text-navy-900">הרכב הנסיעה</label>
+        <div class="relative">
+          <button type="button" id="travelers-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="travelers-popover"
+            class="flex w-full items-center justify-between rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100">
+            <span id="travelers-summary" class="text-navy-900/40">בחרו מבוגרים וילדים</span>
+            <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-navy-900/40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <input type="hidden" id="travelers" name="travelers" />
+
+          <div id="travelers-popover" class="js-hidden absolute z-30 mt-2 w-full rounded-2xl bg-white p-4 shadow-card ring-1 ring-navy-900/10" role="dialog" aria-label="הרכב הנסיעה">
+            <div class="flex items-center justify-between py-1.5">
+              <div>
+                <p class="text-sm font-bold text-navy-900">מבוגרים</p>
+                <p class="text-xs text-navy-900/45">גיל 18+</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="button" data-traveler-action="adults-dec" aria-label="הפחת מבוגר" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-lg font-bold leading-none text-navy-900 transition-colors hover:bg-cream-300">−</button>
+                <span id="adults-count" class="w-5 text-center text-sm font-bold text-navy-900">1</span>
+                <button type="button" data-traveler-action="adults-inc" aria-label="הוסף מבוגר" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-lg font-bold leading-none text-navy-900 transition-colors hover:bg-cream-300">+</button>
+              </div>
+            </div>
+
+            <div class="my-2 h-px bg-navy-900/10"></div>
+
+            <div class="flex items-center justify-between py-1.5">
+              <div>
+                <p class="text-sm font-bold text-navy-900">ילדים</p>
+                <p class="text-xs text-navy-900/45">גיל 0-17</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="button" data-traveler-action="children-dec" aria-label="הפחת ילד" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-lg font-bold leading-none text-navy-900 transition-colors hover:bg-cream-300">−</button>
+                <span id="children-count" class="w-5 text-center text-sm font-bold text-navy-900">0</span>
+                <button type="button" data-traveler-action="children-inc" aria-label="הוסף ילד" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-lg font-bold leading-none text-navy-900 transition-colors hover:bg-cream-300">+</button>
+              </div>
+            </div>
+
+            <div id="children-ages" class="js-hidden mt-2 space-y-2"></div>
+
+            <button type="button" id="travelers-done" class="mt-4 w-full rounded-2xl bg-navy-900 px-4 py-2.5 text-sm font-bold text-cream-50 transition-colors hover:bg-navy-800">אישור</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destination: required, no "open to suggestions" placeholder -->
+      <div>
+        <label for="destination" class="mb-1.5 block text-sm font-semibold text-navy-900">מהו יעד החופשה שלכם?</label>
+        <input id="destination" name="destination" type="text" required class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
+      </div>
+
+      <!-- Dates: exact dates vs flexible range toggle -->
+      <div>
+        <label class="mb-1.5 block text-sm font-semibold text-navy-900">אילו תאריכים מתאימים לכם?</label>
+
+        <div class="mb-3 grid grid-cols-2 gap-1 rounded-2xl bg-cream-100 p-1">
+          <button type="button" data-dates-mode="exact" class="dates-mode-btn is-active rounded-xl px-3 py-2 text-xs font-bold transition-colors" aria-pressed="true">תאריכים מדויקים</button>
+          <button type="button" data-dates-mode="range" class="dates-mode-btn rounded-xl px-3 py-2 text-xs font-bold transition-colors" aria-pressed="false">טווח גמיש</button>
+        </div>
+
+        <div id="dates-exact-fields" class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="date-depart" class="mb-1 block text-xs font-medium text-navy-900/55">יציאה</label>
+            <input id="date-depart" type="date" required class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-3 py-3 text-sm text-navy-900 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
+          </div>
+          <div>
+            <label for="date-return" class="mb-1 block text-xs font-medium text-navy-900/55">חזרה</label>
+            <input id="date-return" type="date" required class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-3 py-3 text-sm text-navy-900 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
+          </div>
+        </div>
+
+        <div id="dates-range-field" class="js-hidden">
+          <input id="date-range" type="text" required placeholder="לדוגמה: בין יולי לאוגוסט, או חודש שלם" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
+        </div>
+
+        <input type="hidden" id="dates" name="dates" />
+      </div>
+
+      <div>
+        <label for="purpose" class="mb-1.5 block text-sm font-semibold text-navy-900">מטרת הנסיעה והעדפות?</label>
+        <textarea id="purpose" name="purpose" rows="3" placeholder="חופשת רומנטיקה, טבע, מסיבות, אוכל..." class="w-full resize-none rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100"></textarea>
+      </div>
+      <div>
+        <label for="budget" class="mb-1.5 block text-sm font-semibold text-navy-900">תקציב משוער לאדם?</label>
+        <input id="budget" name="budget" type="text" required placeholder="לדוגמה: 5000-7000 ש״ח" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary mt-7 w-full">
+      <svg viewBox="0 0 448 512" class="h-5 w-5" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+      שליחה בוואטסאפ
+    </button>
+    <p class="mt-3 text-center text-xs text-navy-900/45">בלחיצה על הכפתור תועברו לוואטסאפ עם הפרטים שמילאתם</p>
+  </form>
+</section>
+
+<!-- ============================================================
+     4. INSTAGRAM VALUE OFFER
 ============================================================ -->
 <section id="instagram" class="relative overflow-hidden bg-navy-gradient py-20 scroll-mt-16">
   <div class="pointer-events-none absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 20% 20%, rgba(47,201,192,0.25), transparent 40%), radial-gradient(circle at 80% 80%, rgba(250,139,60,0.25), transparent 40%);"></div>
@@ -266,7 +390,7 @@
 </section>
 
 <!-- ============================================================
-     4. WHATSAPP SILENT GROUP
+     5. WHATSAPP SILENT GROUP
 ============================================================ -->
 <section id="whatsapp-group" class="relative overflow-hidden bg-turquoise-gradient py-20 scroll-mt-16">
   <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 15% 85%, rgba(11,37,64,0.3), transparent 45%);"></div>
@@ -289,7 +413,7 @@
 </section>
 
 <!-- ============================================================
-     5. ADDITIONAL SERVICES + INSURANCE PARTNERSHIP
+     6. ADDITIONAL SERVICES + INSURANCE PARTNERSHIP
 ============================================================ -->
 <section id="services" class="relative overflow-hidden bg-navy-900 py-16 scroll-mt-16">
   <div class="pointer-events-none absolute -left-24 -top-16 h-64 w-64 rounded-full bg-turquoise-500/10 blur-3xl"></div>
@@ -300,36 +424,30 @@
     <h2 class="mt-2 text-2xl font-extrabold text-cream-50 sm:text-3xl">גם זה אצלנו</h2>
   </div>
 
-  <div class="reveal-stagger is-visible relative mx-auto mt-8 grid max-w-lg grid-cols-2 gap-3 px-6 sm:grid-cols-4 sm:gap-4">
-    <div class="group overflow-hidden rounded-2xl bg-cream-50/5 ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1">
+  <div class="reveal-stagger is-visible relative mx-auto mt-8 grid max-w-lg grid-cols-3 gap-3 px-6 sm:gap-4">
+    <button type="button" data-modal-target="cruises" class="group w-full overflow-hidden rounded-2xl bg-cream-50/5 text-right ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-turquoise-400">
       <div class="relative aspect-[4/3] w-full overflow-hidden">
         <img src="https://images.pexels.com/photos/945177/pexels-photo-945177.jpeg?auto=compress&cs=tinysrgb&w=600" alt="קרוזים בכל העולם" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width="600" height="450" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/5 to-transparent"></div>
       </div>
       <p class="px-2 py-2.5 text-center text-xs font-bold leading-tight text-cream-50 sm:text-sm">קרוזים בכל העולם</p>
-    </div>
-    <div class="group overflow-hidden rounded-2xl bg-cream-50/5 ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1">
+    </button>
+    <button type="button" data-modal-target="carrental" class="group w-full overflow-hidden rounded-2xl bg-cream-50/5 text-right ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-turquoise-400">
       <div class="relative aspect-[4/3] w-full overflow-hidden">
         <img src="https://images.pexels.com/photos/13512047/pexels-photo-13512047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="השכרות רכבים" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width="600" height="450" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/5 to-transparent"></div>
       </div>
       <p class="px-2 py-2.5 text-center text-xs font-bold leading-tight text-cream-50 sm:text-sm">השכרות רכבים</p>
-    </div>
-    <div class="group overflow-hidden rounded-2xl bg-cream-50/5 ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1">
+    </button>
+    <button type="button" data-modal-target="sportsconcerts" class="group w-full overflow-hidden rounded-2xl bg-cream-50/5 text-right ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-turquoise-400">
       <div class="relative aspect-[4/3] w-full overflow-hidden">
-        <img src="https://images.pexels.com/photos/31744929/pexels-photo-31744929.jpeg?auto=compress&cs=tinysrgb&w=600" alt="חבילות כדורגל" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width="600" height="450" />
+        <img src="https://images.pexels.com/photos/36675302/pexels-photo-36675302.jpeg?auto=compress&cs=tinysrgb&w=600" alt="חבילות ספורט והופעות" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width="600" height="450" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/5 to-transparent"></div>
       </div>
-      <p class="px-2 py-2.5 text-center text-xs font-bold leading-tight text-cream-50 sm:text-sm">חבילות כדורגל</p>
-    </div>
-    <div class="group overflow-hidden rounded-2xl bg-cream-50/5 ring-1 ring-cream-50/10 transition-transform duration-300 hover:-translate-y-1">
-      <div class="relative aspect-[4/3] w-full overflow-hidden">
-        <img src="https://images.pexels.com/photos/36675302/pexels-photo-36675302.jpeg?auto=compress&cs=tinysrgb&w=600" alt="הופעות" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width="600" height="450" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/5 to-transparent"></div>
-      </div>
-      <p class="px-2 py-2.5 text-center text-xs font-bold leading-tight text-cream-50 sm:text-sm">הופעות</p>
-    </div>
+      <p class="px-2 py-2.5 text-center text-xs font-bold leading-tight text-cream-50 sm:text-sm">חבילות ספורט והופעות</p>
+    </button>
   </div>
+  <p class="reveal relative mx-auto mt-3 max-w-lg px-6 text-center text-[11px] text-cream-50/40">לחצו על כרטיסייה לפרטים נוספים</p>
 
   <div class="reveal relative mx-auto mt-6 flex max-w-lg items-center gap-4 rounded-3xl bg-gradient-to-l from-gold-500/15 to-turquoise-500/10 px-6 py-5 ring-1 ring-gold-400/25 sm:mx-6">
     <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-500/20 text-gold-400">
@@ -345,49 +463,49 @@
 </section>
 
 <!-- ============================================================
-     6. LEAD FORM
+     SERVICE INFO MODALS (cruises / car rentals / sports+concerts)
 ============================================================ -->
-<section id="lead-form" class="relative overflow-hidden bg-cream-50 py-20 scroll-mt-16">
-  <div class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-turquoise-100 blur-3xl"></div>
-  <div class="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-coral-300/25 blur-3xl"></div>
-
-  <div class="reveal relative mx-auto max-w-lg px-6 text-center">
-    <p class="section-label">התחילו כאן</p>
-    <h2 class="mt-2 text-2xl font-extrabold text-navy-900 sm:text-3xl">פניה לסוכן</h2>
-    <p class="mt-2 text-sm text-navy-800/70">כמה פרטים קצרים, ואנחנו נחזור אליכם עם הצעה מדויקת</p>
-  </div>
-
-  <form id="agent-form" class="reveal relative mx-auto mt-8 max-w-lg rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-navy-900/5 sm:p-8">
-    <div class="space-y-5">
-      <div>
-        <label for="travelers" class="mb-1.5 block text-sm font-semibold text-navy-900">כמה אנשים ואיזה גילאים?</label>
-        <input id="travelers" name="travelers" type="text" required placeholder="לדוגמה: זוג + ילד בן 8" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
-      </div>
-      <div>
-        <label for="destination" class="mb-1.5 block text-sm font-semibold text-navy-900">מהו יעד החופשה שלכם?</label>
-        <input id="destination" name="destination" type="text" required placeholder="יעד מסוים או שאתם פתוחים להצעות" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
-      </div>
-      <div>
-        <label for="dates" class="mb-1.5 block text-sm font-semibold text-navy-900">איזה תאריכים?</label>
-        <input id="dates" name="dates" type="text" required placeholder="תאריכים מדויקים או טווח גמיש" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
-      </div>
-      <div>
-        <label for="purpose" class="mb-1.5 block text-sm font-semibold text-navy-900">מטרת הנסיעה והעדפות?</label>
-        <textarea id="purpose" name="purpose" rows="3" placeholder="חופשת רומנטיקה, טבע, מסיבות, אוכל..." class="w-full resize-none rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100"></textarea>
-      </div>
-      <div>
-        <label for="budget" class="mb-1.5 block text-sm font-semibold text-navy-900">תקציב משוער לאדם?</label>
-        <input id="budget" name="budget" type="text" required placeholder="לדוגמה: 5000-7000 ש״ח" class="w-full rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3.5 text-navy-900 placeholder:text-navy-900/35 outline-none transition-all focus:border-turquoise-500 focus:ring-4 focus:ring-turquoise-100" />
-      </div>
+<div id="modal-cruises" class="service-modal js-hidden fixed inset-0 z-[9999] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-cruises-title">
+  <div class="service-modal-backdrop absolute inset-0 bg-navy-950/70"></div>
+  <div class="relative flex max-h-[85vh] w-[90%] max-w-lg flex-col overflow-y-auto rounded-3xl bg-white p-6 text-navy-900 shadow-2xl sm:p-8" dir="rtl">
+    <button type="button" class="service-modal-close absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-navy-900/5 text-2xl font-bold leading-none text-navy-900 transition-colors hover:bg-navy-900/10" aria-label="סגור חלון">&times;</button>
+    <h3 id="modal-cruises-title" class="pl-12 text-xl font-extrabold text-navy-900 sm:text-2xl">קרוזים בכל העולם</h3>
+    <div class="mt-4 space-y-3 text-sm leading-relaxed text-navy-900/80">
+      <p><span class="font-semibold text-navy-900">מה אנחנו עושים:</span> מתאימים לכם את שייט החלומות המדויק החל מבחירת החברה והאונייה, דרך סוג החדר והמסלול, ועד לסגירת סיורי החוף.</p>
+      <p><span class="font-semibold text-navy-900">איך זה עובד:</span> מאפיינים את סגנון החופשה שלכם, בודקים את כל האותיות הקטנות והחבילות הכלולות, ובוחרים את ההפלגה המשתלמת ביותר בהתאם לרצונות שלכם.</p>
+      <p><span class="font-semibold text-navy-900">חשוב לדעת:</span> עולם הקרוזים מורכב ועמוס בפרטים. במקום להסתבך עם קטגוריות חדרים, חבילות שתייה וסגירת טיסות מקשרות, ובמקום לקחת סיכונים מיותרים בחופשה שלכם, אנחנו כאן ביחד איתכם לכל התיאומים שצריך ומבטיחים שתעלו לספינה בראש שקט.</p>
     </div>
+    <a href="#lead-form" class="service-modal-cta btn-primary mt-6 w-full">בואו נתחיל לתכנן</a>
+  </div>
+</div>
 
-    <button type="submit" class="btn-primary mt-7 w-full">
-      <svg viewBox="0 0 448 512" class="h-5 w-5" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-      שליחה בוואטסאפ
-    </button>
-    <p class="mt-3 text-center text-xs text-navy-900/45">בלחיצה על הכפתור תועברו לוואטסאפ עם הפרטים שמילאתם</p>
-  </form>
-</section>
+<div id="modal-carrental" class="service-modal js-hidden fixed inset-0 z-[9999] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-carrental-title">
+  <div class="service-modal-backdrop absolute inset-0 bg-navy-950/70"></div>
+  <div class="relative flex max-h-[85vh] w-[90%] max-w-lg flex-col overflow-y-auto rounded-3xl bg-white p-6 text-navy-900 shadow-2xl sm:p-8" dir="rtl">
+    <button type="button" class="service-modal-close absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-navy-900/5 text-2xl font-bold leading-none text-navy-900 transition-colors hover:bg-navy-900/10" aria-label="סגור חלון">&times;</button>
+    <h3 id="modal-carrental-title" class="pl-12 text-xl font-extrabold text-navy-900 sm:text-2xl">השכרת רכבים</h3>
+    <div class="mt-4 space-y-3 text-sm leading-relaxed text-navy-900/80">
+      <p>אנחנו דואגים לכם לרכב השכור המתאים ביותר ליעד ולצרכים שלכם כחלק מהחופשה שלכם אם זה מסלולי כוכב או מסלול מעגלי, כולל המלצות לאורך כל הדרך. אנו עובדים ישירות מול חברות ההשכרה הטובות והבטוחות בעולם.</p>
+      <p>אנחנו ביחד איתכם מתאימים את סוג הרכב להרכב הנוסעים ולתוואי המסלול, מוודאים הוספת נהגים, ציוד נדרש וכיסויים מתאימים. בלי הפתעות בדלפק ובלי אותיות קטנות בחוזה.</p>
+      <p>אתם מקבלים שקיפות מלאה לגבי תנאי ההשכרה, תמיכה וסיוע במקרה של שינוי או בעיה, ומבטיחים שלא תיתקעו בלי פתרון מעבר לים.</p>
+    </div>
+    <a href="#lead-form" class="service-modal-cta btn-primary mt-6 w-full">בואו נתחיל לתכנן</a>
+  </div>
+</div>
+
+<div id="modal-sportsconcerts" class="service-modal js-hidden fixed inset-0 z-[9999] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-sportsconcerts-title">
+  <div class="service-modal-backdrop absolute inset-0 bg-navy-950/70"></div>
+  <div class="relative flex max-h-[85vh] w-[90%] max-w-lg flex-col overflow-y-auto rounded-3xl bg-white p-6 text-navy-900 shadow-2xl sm:p-8" dir="rtl">
+    <button type="button" class="service-modal-close absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-navy-900/5 text-2xl font-bold leading-none text-navy-900 transition-colors hover:bg-navy-900/10" aria-label="סגור חלון">&times;</button>
+    <h3 id="modal-sportsconcerts-title" class="pl-12 text-xl font-extrabold text-navy-900 sm:text-2xl">חבילות ספורט והופעות</h3>
+    <div class="mt-4 space-y-3 text-sm leading-relaxed text-navy-900/80">
+      <p>כולנו יודעים שתחום הכרטיסים וההופעות הוא בעייתי מאוד ואפילו מורכב לעיתים. אנחנו כאן מרכיבים חבילות ספורט והופעות מלאות הכוללות טיסות, מלונות וכרטיסים מאושרים ורשמיים למשחקים החמים ביותר בליגות המובילות ובטורנירים הגדולים, ולמופעים המובילים.</p>
+      <p>אתם בוחרים את המשחק או ההופעה שאתם חייבים להיות בהם, ואנחנו בונים את זה במיוחד עבורכם עם המעטפת השלמה - ממיקום הישיבה באצטדיון ועד למלון, הטיסות וההעברות במיקומים מרכזיים.</p>
+      <p><span class="font-semibold text-navy-900">חשוב לדעת:</span> עולם הכרטיסים מלא בספסרים וסיכונים. דרכנו אתם מקבלים כרטיסים מקוריים ומובטחים, ראש שקט שאין ביטולים ברגע האחרון, וחבילה מותאמת אישית שלוקחת בחשבון את כל לוח הזמנים של הטיול.</p>
+    </div>
+    <a href="#lead-form" class="service-modal-cta btn-primary mt-6 w-full">בואו נתחיל לתכנן</a>
+  </div>
+</div>
 
 <!-- ============================================================
      7. SECONDARY SOCIALS

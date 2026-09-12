@@ -56,6 +56,24 @@
     outline-offset: 2px;
   }
 
+  /* Robust show/hide helper for JS-driven toggles (popovers, modals, field
+     groups). Uses !important so it always wins the cascade even when
+     combined with a display-setting utility (flex/grid) on the same
+     element — plain [hidden] can lose that fight to Tailwind's stylesheet. */
+  .js-hidden {
+    display: none !important;
+  }
+
+  /* Dates mode toggle buttons (exact / range) */
+  .dates-mode-btn {
+    color: rgba(11, 37, 64, 0.55);
+  }
+  .dates-mode-btn.is-active {
+    background-color: #fff;
+    color: #0b2540;
+    box-shadow: 0 4px 20px -4px rgba(7, 27, 44, 0.15);
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-coral-gradient px-8 py-4 text-base font-bold text-cream-50 shadow-glow transition-transform duration-300 active:scale-95 hover:scale-[1.03];
   }
