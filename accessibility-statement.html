@@ -114,38 +114,69 @@
 </footer>
 
 <!-- ============================================================
-     ACCESSIBILITY TOOLBAR (fully local — no external service, no signup)
+     ACCESSIBILITY BUTTON + FULL-SCREEN MODAL (fully local — no external service, no signup)
 ============================================================ -->
 <div id="a11y-widget" class="fixed bottom-5 right-5 z-50">
-  <button id="a11y-toggle" type="button" aria-label="אפשרויות נגישות" aria-expanded="false" aria-controls="a11y-panel"
+  <button id="a11y-toggle" type="button" aria-label="נגישות ומדיניות פרטיות" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11y-modal"
     class="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-cream-50 shadow-glow ring-2 ring-turquoise-400/40 transition-transform active:scale-95 hover:scale-105">
     <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor"><circle cx="12" cy="4" r="2"/><path d="M12 7c-1.1 0-2 .9-2 2v3.2l-3.6 1.4a1 1 0 00.7 1.9L10 14.2V16l-2.4 5.6a1 1 0 001.8.8L12 18l2.6 4.4a1 1 0 001.8-.8L14 16v-1.8l2.9 1.1a1 1 0 00.7-1.9L14 12.2V9c0-1.1-.9-2-2-2z"/></svg>
   </button>
+</div>
 
-  <div id="a11y-panel" hidden class="absolute bottom-16 right-0 w-64 rounded-3xl bg-white p-4 text-navy-900 shadow-soft ring-1 ring-navy-900/10">
-    <p class="mb-3 text-sm font-bold text-navy-900">אפשרויות נגישות</p>
-    <div class="space-y-2">
-      <div class="flex items-center justify-between gap-2 rounded-2xl bg-cream-50 px-3 py-2">
-        <span class="text-sm font-semibold">גודל טקסט</span>
-        <div class="flex items-center gap-1.5">
-          <button type="button" data-a11y-action="font-dec" aria-label="הקטן טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א-</button>
-          <button type="button" data-a11y-action="font-inc" aria-label="הגדל טקסט" class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sm font-bold hover:bg-cream-300">א+</button>
-        </div>
+<div id="a11y-modal" hidden class="fixed top-0 left-0 z-[9999] h-screen w-screen p-4" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
+  <div id="a11y-modal-backdrop" class="absolute inset-0 bg-navy-950/70"></div>
+  <div class="relative flex h-full w-full items-center justify-center">
+
+  <div class="relative flex max-h-[85vh] w-[90%] max-w-2xl flex-col overflow-y-auto rounded-3xl bg-white p-6 text-navy-900 shadow-2xl sm:p-8" dir="rtl">
+    <button id="a11y-modal-close" type="button" aria-label="סגור חלון"
+      class="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-navy-900/5 text-2xl font-bold leading-none text-navy-900 transition-colors hover:bg-navy-900/10">
+      &times;
+    </button>
+
+    <h2 id="a11y-modal-title" class="pl-12 text-2xl font-extrabold text-navy-900 sm:text-2xl">נגישות ומדיניות פרטיות</h2>
+
+    <!-- Part A: Accessibility options + statement -->
+    <section class="mt-6">
+      <h3 class="border-b border-navy-900/10 pb-2 text-lg font-bold text-navy-900">א. אפשרויות והצהרת נגישות</h3>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button type="button" data-a11y-action="font-dec" aria-label="הקטן טקסט" class="rounded-full bg-cream-100 px-4 py-2 text-sm font-bold hover:bg-cream-300">א- הקטן טקסט</button>
+        <button type="button" data-a11y-action="font-inc" aria-label="הגדל טקסט" class="rounded-full bg-cream-100 px-4 py-2 text-sm font-bold hover:bg-cream-300">א+ הגדל טקסט</button>
+        <button type="button" data-a11y-action="contrast" aria-label="ניגודיות גבוהה" class="rounded-full bg-cream-100 px-4 py-2 text-sm font-bold hover:bg-cream-300">ניגודיות גבוהה / שחור-לבן</button>
+        <button type="button" data-a11y-action="reset" class="rounded-full bg-navy-900/5 px-4 py-2 text-sm font-semibold text-navy-900/70 hover:bg-navy-900/10">איפוס</button>
       </div>
-      <button type="button" data-a11y-action="contrast" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
-        <span>ניגודיות גבוהה</span>
-        <span data-a11y-indicator="contrast" class="text-xs text-navy-900/40">כבוי</span>
-      </button>
-      <button type="button" data-a11y-action="underline" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
-        <span>הדגשת קישורים</span>
-        <span data-a11y-indicator="underline" class="text-xs text-navy-900/40">כבוי</span>
-      </button>
-      <button type="button" data-a11y-action="readable" class="flex w-full items-center justify-between rounded-2xl bg-cream-50 px-3 py-2.5 text-sm font-semibold hover:bg-cream-100">
-        <span>גופן קריא</span>
-        <span data-a11y-indicator="readable" class="text-xs text-navy-900/40">כבוי</span>
-      </button>
-      <button type="button" data-a11y-action="reset" class="mt-1 w-full rounded-2xl bg-navy-900/5 px-3 py-2.5 text-sm font-semibold text-navy-900/70 hover:bg-navy-900/10">איפוס הגדרות</button>
-    </div>
+
+      <p class="mt-5 text-sm leading-relaxed text-navy-900/80">
+        Maykon Tours הינו עסק קטן במחזור עסקאותיו, ובהתאם לכך חל עליו הפטור הקבוע בתקנה 35 לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, הפוטר עסקים כאמור מביצוע מלוא ההתאמות הנדרשות בקוד האינטרנט. לעסק אין קבלת קהל פרונטלית — השירות ניתן באופן טלפוני ומקוון בלבד. לכל בקשת התאמה, סיוע או הקראת מידע ניתן לפנות לאלדר מייקון בטלפון או בוואטסאפ:
+        <a href="tel:+972528786250" class="font-semibold text-turquoise-600 underline underline-offset-2" dir="ltr">052-878-6250</a>.
+      </p>
+    </section>
+
+    <!-- Part B: Privacy policy -->
+    <section class="mt-8">
+      <h3 class="border-b border-navy-900/10 pb-2 text-lg font-bold text-navy-900">ב. מדיניות פרטיות</h3>
+
+      <div class="mt-4 space-y-3 text-sm leading-relaxed text-navy-900/80">
+        <p>
+          אנו אוספים פרטי קשר בסיסיים (שם מלא, טלפון, ולעיתים דוא"ל) בעת פנייה ראשונית, לצורך הכנת הצעות מחיר ובניית מסלולי טיול. במהלך ביצוע הזמנה בפועל של שירותי תיירות אנו עשויים לבקש גם מספרי תעודת זהות, פרטי דרכון ופרטי אמצעי תשלום — ככל שנדרש להשלמת ההזמנה.
+        </p>
+        <p class="rounded-2xl bg-gold-500/10 px-4 py-3 ring-1 ring-gold-400/25">
+          <span class="font-semibold text-navy-900">שימו לב:</span> לצורך מתן השירות אנו מעבירים חלק מהמידע לספקים המעורבים בהזמנה — חברות תעופה, בתי מלון, ספקי קרוזים, מערכות הזמנה והפצה גלובליות (GDS), וחברות ביטוח נסיעות, ובכלל זה <span class="font-semibold text-navy-900">הראל</span> ו<span class="font-semibold text-navy-900">פספורטכארד</span>. חלק מהספקים פועלים מחוץ לישראל, ולפיכך המידע האישי עשוי לעבור העברה ואחסון במדינות מחוץ לישראל בהתאם לנדרש.
+        </p>
+        <p>
+          האתר עושה שימוש בעוגיות (Cookies) סטנדרטיות לצורך תפעולו התקין, וכולל קישורים לשירותי צד ג' (כגון וואטסאפ ורשתות חברתיות) הכפופים למדיניות הפרטיות שלהם.
+        </p>
+        <p>
+          בהתאם לסעיפים 13–14 לחוק הגנת הפרטיות, התשמ"א-1981, כל אדם זכאי לעיין במידע המוחזק אודותיו במאגר, ולבקש את תיקונו או מחיקתו — בפנייה אלינו בטלפון או בוואטסאפ שלמעלה.
+        </p>
+      </div>
+
+      <p class="mt-5 text-xs text-navy-900/50">
+        למסמכים המלאים: <a href="privacy-policy.html" class="underline underline-offset-2 hover:text-navy-900">מדיניות פרטיות מלאה</a>
+        · <a href="accessibility-statement.html" class="underline underline-offset-2 hover:text-navy-900">הצהרת נגישות מלאה</a>
+      </p>
+    </section>
+  </div>
   </div>
 </div>
 <script src="js/accessibility.js"></script>

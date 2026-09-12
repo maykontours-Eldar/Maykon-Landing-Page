@@ -1,93 +1,100 @@
-// Maykon Tours — local accessibility toolbar
-// Fully self-contained: no external script, no third-party account or signup
-// required. Controls text size, contrast, link emphasis and a more readable
-// font, and remembers the visitor's choice between visits (localStorage).
+/*
+ * Maykon Tours — local accessibility toolbar + legal info modal.
+ * Fully self-contained: no external service, no account, no signup.
+ * State (font size step, high-contrast) persists via localStorage.
+ */
 (function () {
   "use strict";
 
   var STORAGE_KEY = "maykon-a11y";
   var root = document.documentElement;
-  var defaults = { fontStep: 0, contrast: false, underline: false, readable: false };
+  var state = { fontStep: 0, contrast: false };
 
-  var state;
-  try {
-    state = Object.assign({}, defaults, JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"));
-  } catch (e) {
-    state = Object.assign({}, defaults);
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (typeof parsed.fontStep === "number") state.fontStep = parsed.fontStep;
+        if (typeof parsed.contrast === "boolean") state.contrast = parsed.contrast;
+      }
+    } catch (e) {
+      /* localStorage unavailable — continue with defaults */
+    }
   }
 
-  function save() {
+  function saveState() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
-      /* localStorage unavailable — settings just won't persist */
+      /* ignore */
     }
   }
 
-  function setIndicator(name, on) {
-    var el = document.querySelector('[data-a11y-indicator="' + name + '"]');
-    if (el) el.textContent = on ? "פעיל" : "כבוי";
+  function clampStep(step) {
+    return Math.max(-2, Math.min(4, step));
   }
 
-  function apply() {
-    root.style.fontSize = state.fontStep ? 100 + state.fontStep * 12 + "%" : "";
+  function applyState() {
+    root.style.fontSize = state.fontStep === 0 ? "" : 100 + state.fontStep * 12 + "%";
     root.classList.toggle("a11y-contrast", state.contrast);
-    root.classList.toggle("a11y-underline-links", state.underline);
-    root.classList.toggle("a11y-readable-font", state.readable);
-    setIndicator("contrast", state.contrast);
-    setIndicator("underline", state.underline);
-    setIndicator("readable", state.readable);
   }
 
-  apply();
+  loadState();
+  applyState();
 
-  var toggleBtn = document.getElementById("a11y-toggle");
-  var panel = document.getElementById("a11y-panel");
-  if (!toggleBtn || !panel) return;
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggle = document.getElementById("a11y-toggle");
+    var modal = document.getElementById("a11y-modal");
+    if (!toggle || !modal) return;
 
-  function setPanelOpen(open) {
-    panel.hidden = !open;
-    toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-  }
+    var closeBtn = document.getElementById("a11y-modal-close");
+    var backdrop = document.getElementById("a11y-modal-backdrop");
 
-  toggleBtn.addEventListener("click", function () {
-    setPanelOpen(panel.hidden);
-  });
-
-  document.addEventListener("click", function (e) {
-    var inPanel = panel.contains(e.target);
-    var onToggle = toggleBtn.contains(e.target);
-    if (!panel.hidden && !inPanel && !onToggle) setPanelOpen(false);
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !panel.hidden) setPanelOpen(false);
-  });
-
-  panel.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-a11y-action]");
-    if (!btn) return;
-    switch (btn.getAttribute("data-a11y-action")) {
-      case "font-inc":
-        state.fontStep = Math.min(4, state.fontStep + 1);
-        break;
-      case "font-dec":
-        state.fontStep = Math.max(-2, state.fontStep - 1);
-        break;
-      case "contrast":
-        state.contrast = !state.contrast;
-        break;
-      case "underline":
-        state.underline = !state.underline;
-        break;
-      case "readable":
-        state.readable = !state.readable;
-        break;
-      case "reset":
-        state = Object.assign({}, defaults);
-        break;
+    function openModal() {
+      modal.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
     }
-    save();
-    apply();
+
+    function closeModal() {
+      modal.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    toggle.addEventListener("click", function () {
+      if (modal.hidden) {
+        openModal();
+      } else {
+        closeModal();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (backdrop) backdrop.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) closeModal();
+    });
+
+    var actionButtons = modal.querySelectorAll("[data-a11y-action]");
+    for (var i = 0; i < actionButtons.length; i++) {
+      actionButtons[i].addEventListener("click", function () {
+        var action = this.getAttribute("data-a11y-action");
+        if (action === "font-inc") {
+          state.fontStep = clampStep(state.fontStep + 1);
+        } else if (action === "font-dec") {
+          state.fontStep = clampStep(state.fontStep - 1);
+        } else if (action === "contrast") {
+          state.contrast = !state.contrast;
+        } else if (action === "reset") {
+          state.fontStep = 0;
+          state.contrast = false;
+        }
+        applyState();
+        saveState();
+      });
+    }
   });
 })();
